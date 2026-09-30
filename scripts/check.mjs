@@ -63,7 +63,7 @@ const ygFixture = `<main>TAIPEI TAIPEI ARENA 2026.11.21. (SAT) 2026.11.22. (SUN)
 const bmOfficial = parseBabymonsterChoomTaipei(ygFixture);
 if (!bmOfficial || bmOfficial.start !== "2026-11-21T00:00:00+08:00" || bmOfficial.end !== "2026-11-22T00:00:00+08:00" || bmOfficial.sourceName !== "YG Entertainment Official") { console.error("BABYMONSTER YG official parser failed", bmOfficial); ok=false; }
 
-const kaoFixture = `<div>藝文表演 TREASURE THE STAGE 2026 NEW WAV : LIVE IN KAOHSIUNG 2026/09/26~2026/09/26</div><div>藝文表演 2026 PLAVE World Tour [KEEP IT MANIC] in Kaohsiung 2026/10/03~2026/10/03</div><div>其他 KICA 2026/10/09~2026/10/12</div><div>地址：高雄市左營區博愛二路757號</div>`;
+const kaoFixture = `<div>藝文表演 TREASURE THE STAGE 2026 NEW WAV : LIVE IN KAOHSIUNG 2026/10/26~2026/10/26</div><div>藝文表演 2026 PLAVE World Tour [KEEP IT MANIC] in Kaohsiung 2026/11/03~2026/11/03</div><div>其他 KICA 2026/10/09~2026/10/12</div><div>地址：高雄市左營區博愛二路757號</div>`;
 const kao = parseKaohsiungArenaCalendar(kaoFixture);
 if (kao.length !== 2 || !kao.every(e => e.city === "Kaohsiung" && e.venueLayoutId === "kaohsiung-base")) { console.error("Kaohsiung official calendar parser failed", kao); ok = false; }
 

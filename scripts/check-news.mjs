@@ -25,7 +25,8 @@ if(!i18n.includes("'日本':'Japan'") || !i18n.includes("'新聞':'News'")) fail
 if(!/news\.google\.com\/rss\/search/.test(api)) fail('free public news feed missing');
 if(!sw.includes('"/news.js"')) fail('news.js not cached by PWA');
 
-const fixture=`<?xml version="1.0"?><rss><channel><item><title><![CDATA[IVE 回歸新消息 - Test Media]]></title><link>https://example.com/a</link><pubDate>Sun, 20 Sep 2026 10:00:00 GMT</pubDate><description><![CDATA[<p>summary</p>]]></description><source url="https://example.com">Test Media</source></item><item><title>第二則 - Media B</title><link>https://example.com/b</link><pubDate>Sun, 20 Sep 2026 09:00:00 GMT</pubDate><source url="https://example.com">Media B</source></item></channel></rss>`;
+const recentA=new Date(Date.now()-2*3600000).toUTCString(), recentB=new Date(Date.now()-3*3600000).toUTCString();
+const fixture=`<?xml version="1.0"?><rss><channel><item><title><![CDATA[IVE 回歸新消息 - Test Media]]></title><link>https://example.com/a</link><pubDate>${recentA}</pubDate><description><![CDATA[<p>summary</p>]]></description><source url="https://example.com">Test Media</source></item><item><title>第二則 - Media B</title><link>https://example.com/b</link><pubDate>${recentB}</pubDate><source url="https://example.com">Media B</source></item></channel></rss>`;
 const realFetch=global.fetch;
 global.fetch=async ()=>({ok:true,status:200,text:async()=>fixture});
 let status=0, body=null, headers={};
